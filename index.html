@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container-fluid">
+    <h1>Hello World!</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <div class="row">
+        <div class="col-sm-12">
+            We are using node
+            <script>document.write(process.versions.node)</script>
+            ,
+            Chromium
+            <script>document.write(process.versions.chrome)</script>
+            ,
+            and Electron
+            <script>document.write(process.versions.electron)</script>
+            .
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <textarea id="foobar">
+                
+            </textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">.col-md-4</div>
+        <div class="col-sm-4">.col-md-4</div>
+        <div class="col-sm-4">.col-md-4</div>
+    </div>
+</div>
+</body>
+<script>
+    let jQuery = require('jquery');
+    let $ = jQuery;
+    require('jquery-ui');
+    require('bootstrap');
+    require('./renderer.js')
+</script>
+</html>
