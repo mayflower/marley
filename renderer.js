@@ -134,7 +134,7 @@ class IniValue extends IniElement {
         return $(`
         <li><div class="row">
             <div class="col-sm-3">${this.name}</div>
-            <div class="col-sm-9">${this.value}</div>
+            <div class="col-sm-9"><textarea>${this.value}</textarea></div>
         </div></li>`);
     }
 }
