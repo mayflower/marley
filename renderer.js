@@ -125,13 +125,13 @@ class IniComment extends IniElement {
  */
 class IniValue extends IniElement {
     static get regex() {
-        return /^\s*(.*?)=(.*)\s*$/;
+        return /^\s*(.*?)="?(.*?)"?\s*$/;
     }
 
     constructor(line) {
         super(line);
         let matches = line.match(this.constructor.regex);
-        this.value = matches[2];
+        this.value = matches[2].replace(/"_QQ_"/g,'"').replace(/\\n/g,"\n");
     }
 
     render() {
