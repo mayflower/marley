@@ -2,7 +2,10 @@
 let electron = require('electron');
 let fs = require('fs');
 
+$( "#sortable" ).sortable();
+$( "#sortable" ).disableSelection();
 electron.ipcRenderer.on('openFile', function (sender, fileName) {
+
     fs.readFile(fileName, 'utf-8', function (err, data) {
         let elements = [];
         let lines = data.split("\n");
@@ -13,6 +16,10 @@ electron.ipcRenderer.on('openFile', function (sender, fileName) {
             }
         });
         console.log(elements);
+
+        elements.forEach(function (element) {
+            
+        });
     });
 });
 
