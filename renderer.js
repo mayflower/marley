@@ -2,24 +2,41 @@
 let electron = require('electron');
 let fs = require('fs');
 
-$( "#sortable" ).sortable();
-$( "#sortable" ).disableSelection();
+initializeSortables();
+
+function initializeSortables() {
+
+    $(".sortable-values").sortable({
+        connectWith: '.sortable-values'
+    });
+    $("#sortable-sections").sortable({
+        handle: '.panel-heading'
+    });
+}
 electron.ipcRenderer.on('openFile', function (sender, fileName) {
 
     fs.readFile(fileName, 'utf-8', function (err, data) {
-        let elements = [];
+        let sections = [];
         let lines = data.split("\n");
+
+        let lastSection = new IniSection('[]');
+        sections.push(lastSection);
+
         lines.forEach(function (line) {
             let element = IniElement.getElement(line);
-            if (element) {
-                elements.push(element);
+            if (element instanceof IniSection) {
+                lastSection = element;
+                sections.push(element);
+            } else if (element instanceof IniElement) {
+                lastSection.children.push(element);
             }
         });
-        console.log(elements);
-
-        elements.forEach(function (element) {
-            
-        });
+        let $sections = $("#sortable-sections");
+        $sections.empty();
+        sections.forEach(
+            section => $sections.append(section.render())
+        );
+        initializeSortables();
     });
 });
 
@@ -33,8 +50,14 @@ class IniElement {
         this.name = matches[1];
     }
 
+    /**
+     * @returns jQuery
+     */
+    render() {
+        throw "implement me!";
+    }
+
     static getElement(line) {
-        console.log(line);
         if (line.match(IniSection.regex)) {
             return new IniSection(line);
         }
@@ -47,7 +70,38 @@ class IniElement {
     }
 }
 
+/**
+ * @class
+ * @property {IniElement[]} children
+ */
 class IniSection extends IniElement {
+    constructor(line) {
+        super(line);
+        this.children = [];
+    }
+
+    /**
+     * @returns jQuery
+     */
+    render() {
+        let $ret = $(`
+        <li class="panel panel-default">
+            <div class="panel-heading">
+                ${this.name}
+            </div>
+            <div class="panel-body">
+                <ul class="sortable-values">
+                </ul>
+            </div>
+        </li>`);
+        let $appendTo = $ret.find('.sortable-values');
+        this.children.forEach(child => {
+            let $element = child.render();
+            $element.appendTo($appendTo);
+        });
+        return $ret;
+    }
+
     static get regex() {
         return /^\s*\[(.*)\]\s*$/;
     }
@@ -55,6 +109,10 @@ class IniSection extends IniElement {
 class IniComment extends IniElement {
     static get regex() {
         return /^;(.*)/;
+    }
+
+    render() {
+        return $(`<li class="ini-comment">${this.name}</li>`);
     }
 }
 /**
@@ -70,5 +128,13 @@ class IniValue extends IniElement {
         super(line);
         let matches = line.match(this.constructor.regex);
         this.value = matches[2];
+    }
+
+    render() {
+        return $(`
+        <li><div class="row">
+            <div class="col-sm-3">${this.name}</div>
+            <div class="col-sm-9">${this.value}</div>
+        </div></li>`);
     }
 }
