@@ -87,7 +87,7 @@ class IniSection extends IniElement {
         let $ret = $(`
         <li class="panel panel-default">
             <div class="panel-heading">
-                ${this.name}
+                <textarea class="form-control">${this.name}</textarea>
             </div>
             <div class="panel-body">
                 <ul class="sortable-values">
@@ -112,7 +112,7 @@ class IniComment extends IniElement {
     }
 
     render() {
-        return $(`<li class="ini-comment">${this.name}</li>`);
+        return $(`<li class="ini-comment">HANDLE<textarea class="form-control">${this.name}</textarea></li>`);
     }
 }
 /**
@@ -133,8 +133,8 @@ class IniValue extends IniElement {
     render() {
         return $(`
         <li><div class="row">
-            <div class="col-sm-3">${this.name}</div>
-            <div class="col-sm-9"><textarea>${this.value}</textarea></div>
+            <div class="name col-sm-3">${this.name}</div>
+            <div class="value col-sm-9"><textarea class="form-control">${this.value}</textarea></div>
         </div></li>`);
     }
 }
