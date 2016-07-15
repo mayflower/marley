@@ -34,4 +34,4 @@ module.exports =  class IniValue extends IniElement {
 
         return $element;
     }
-}
+};

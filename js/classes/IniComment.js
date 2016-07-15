@@ -24,4 +24,4 @@ module.exports = class IniComment extends IniElement {
 
         return $element;
     }
-}
+};
