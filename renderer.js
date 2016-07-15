@@ -13,9 +13,10 @@ function initializeSortables() {
         handle: '.panel-heading'
     });
 }
-electron.ipcRenderer.on('openFile', function (sender, fileName) {
 
+electron.ipcRenderer.on('openFile', function (sender, fileName) {
     fs.readFile(fileName, 'utf-8', function (err, data) {
+        /** @var {IniSection[]} */
         let sections = [];
         let lines = data.split("\n");
 
@@ -34,10 +35,24 @@ electron.ipcRenderer.on('openFile', function (sender, fileName) {
         let $sections = $("#sortable-sections");
         $sections.empty();
         sections.forEach(
-            section => $sections.append(section.render())
+            section => {
+                let $section = $(section.render());
+                $sections.append($section);
+                $section.addClass(IniSection.cssClass).data('section', section);
+            }
         );
         initializeSortables();
     });
+});
+
+electron.ipcRenderer.on('saveFile', function (sender, fileName) {
+    /** @var {IniSection[]} */
+    let sections = $('.' + IniSection.cssClass).toArray().map((section) => $(section).data('section'));
+
+    let fileContents = sections.map((section) => section.toIni()).join("\n");
+    fileContents = fileContents.replace(/^\[]\n/, ""); // remove empty section header [] at the start of the file
+
+    console.log(fileContents);
 });
 
 /**
@@ -51,9 +66,16 @@ class IniElement {
     }
 
     /**
-     * @returns jQuery
+     * @returns {jQuery}
      */
     render() {
+        throw "implement me!";
+    }
+
+    /**
+     * @returns {string}
+     */
+    toIni() {
         throw "implement me!";
     }
 
@@ -80,6 +102,10 @@ class IniSection extends IniElement {
         this.children = [];
     }
 
+    static get cssClass(){
+        return 'section-element';
+    }
+
     /**
      * @returns jQuery
      */
@@ -88,19 +114,29 @@ class IniSection extends IniElement {
         <li class="panel panel-default">
             <div class="panel-heading">
                 <button type="button" class="btn btn-default toggle-collapse"><i class="glyphicon glyphicon-chevron-up"></i></button>
-                <textarea class="form-control" rows="1">${this.name}</textarea>
+                <textarea class="form-control name" rows="1">${this.name}</textarea>
             </div>
             <div class="panel-body">
                 <ul class="sortable-values">
                 </ul>
             </div>
         </li>`);
+
+        let $name = $ret.find('.name');
+        $name.change(()=> {
+            this.name = $name.val();
+        });
+
         let $appendTo = $ret.find('.sortable-values');
         this.children.forEach(child => {
             let $element = child.render();
             $element.appendTo($appendTo);
         });
         return $ret;
+    }
+
+    toIni() {
+        return `[${this.name}]\n` + this.children.map((child) => child.toIni()).join("\n");
     }
 
     static get regex() {
@@ -112,12 +148,23 @@ class IniComment extends IniElement {
         return /^;(.*)/;
     }
 
+    toIni() {
+        return `;${this.name}`;
+    }
+
     render() {
-        return $(`
+        let $element = $(`
         <li class="ini-comment"><div class="row">
             <div class="col-sm-1">;</div>
-            <div class="col-sm-11"><textarea class="form-control" rows="1">${this.name}</textarea></div>
+            <div class="col-sm-11"><textarea class="form-control name" rows="1">${this.name}</textarea></div>
         </div></li>`);
+
+        let $name = $element.find('.name');
+        $name.change(()=> {
+            this.name = $name.val();
+        });
+
+        return $element;
     }
 }
 /**
@@ -132,14 +179,25 @@ class IniValue extends IniElement {
     constructor(line) {
         super(line);
         let matches = line.match(this.constructor.regex);
-        this.value = matches[2].replace(/"_QQ_"/g,'"').replace(/\\n/g,"\n");
+        this.value = matches[2].replace(/"_QQ_"/g, '"').replace(/\\n/g, "\n");
+    }
+
+    toIni() {
+        return `${this.name}="${this.value}"`;
     }
 
     render() {
-        return $(`
+        let $element = $(`
         <li><div class="row">
             <div class="name col-sm-3">${this.name}</div>
-            <div class="value col-sm-9"><textarea class="form-control">${this.value}</textarea></div>
+            <div class="col-sm-9"><textarea class="form-control value">${this.value}</textarea></div>
         </div></li>`);
+
+        let $value = $element.find('.value');
+        $value.change(() => {
+            this.value = $value.val();
+        });
+
+        return $element;
     }
 }

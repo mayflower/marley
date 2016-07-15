@@ -10,6 +10,9 @@ exports.mainMenu = [
                     electron.dialog.showOpenDialog(
                         {properties: ['openFile']},
                         function (fileNames) {
+                            if (!fileNames || fileNames.length != 1) {
+                                return;
+                            }
                             electron.BrowserWindow.getAllWindows()[0].webContents.send(
                                 'openFile',
                                 fileNames[0]
@@ -20,7 +23,13 @@ exports.mainMenu = [
             },
             {
                 label: 'Speichern',
-                accelerator: 'CmdOrCtrl+S'
+                accelerator: 'CmdOrCtrl+S',
+                click: () => {
+                    electron.BrowserWindow.getAllWindows()[0].webContents.send(
+                        'saveFile',
+                        "test.ini"
+                    );
+                }
             }
         ]
     },
