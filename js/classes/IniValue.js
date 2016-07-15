@@ -13,11 +13,11 @@ module.exports =  class IniValue extends IniElement {
     constructor(line) {
         super(line);
         let matches = line.match(this.constructor.regex);
-        this.value = matches[2].replace(/"_QQ_"/g, '"').replace(/\\n/g, "\n");
+        this.value = this.unescape(matches[2]);
     }
 
     toIni() {
-        return `${this.name}="${this.value}"`;
+        return `${this.name}="${this.escape(this.value)}"`;
     }
 
     render() {

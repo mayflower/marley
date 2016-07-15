@@ -19,6 +19,22 @@ module.exports = class IniElement {
         return this._$element;
     }
 
+    /**
+     * converts escaped ini-string to normal string for display
+     * @param string
+     */
+    unescape(string){
+        return string.replace(/"_QQ_"/g, '"').replace(/\\n/g, "\n");
+    }
+
+    /**
+     * converts normal string to escaped string for ini
+     * @param string
+     */
+    escape(string){
+        return string.replace(/"/g, '"_QQ_"').replace(/\n/g, '\\n');
+    }
+
     static get cssClass() {
         return 'has-ini-element';
     }
