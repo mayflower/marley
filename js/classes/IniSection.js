@@ -40,16 +40,14 @@ module.exports = class IniSection extends IniElement {
                 </ul>
                 <div class="form-group add-value">
                     <div class="row">
-                        <div class="name col-sm-2">
+                        <div class="col-sm-2">
                             <select class="form-control value-select">
                                 <option value="1" selected>Übersetzung</option>
                                 <option value="0">Kommentar</option>
                             </select>
                         </div>
-                        <div class="name col-sm-9">
+                        <div class="col-sm-10 flex-col">
                             <textarea class="form-control value-text" rows="1" placeholder="Platzhalter oder Kommentar-Text"></textarea>
-                        </div>
-                        <div class="name col-sm-1">
                             <button type="button" class="btn btn-default value-add">Hinzufügen</button>
                         </div>
                     </div>
