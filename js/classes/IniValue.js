@@ -25,12 +25,17 @@ module.exports =  class IniValue extends IniElement {
         let $element = $(`
         <li class="ini-value"><div class="row">
             <div class="col-sm-1"><i class="fa fa-arrows" aria-hidden="true"></i></div>
-            <div class="name col-sm-2">${this.name}</div>
+            <div class="col-sm-2"><input type="text" class="form-control name" value="${this.name}"></div>
             <div class="col-sm-9 flex-col">
                 <textarea class="form-control value" rows="1">${this.value}</textarea>
                 <button type="button" class="btn btn-default remove-value"><i class="glyphicon glyphicon-minus"></i></button>
             </div>
         </div></li>`);
+
+        let $name = $element.find('.name');
+        $name.change(() => {
+            this.name = $name.val();
+        });
 
         let $value = $element.find('.value');
         $value.change(() => {

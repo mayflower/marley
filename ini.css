@@ -8,10 +8,6 @@ li {
     margin: 5px 0;
 }
 
-li .name {
-    word-break: break-all;
-}
-
 textarea {
     resize: vertical;
 }
