@@ -43,9 +43,9 @@ module.exports = class IniSection extends IniElement {
             <div class="panel-body">
                 <ul class="sortable-values children">
                 </ul>
-                <div class="form-group collapse-parent">
+                <div class="form-group collapse-parent well well-sm add-button-div">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 add-button-group">
                             <button type="button" class="btn btn-default collapse-button" data-collapse-class="value">Übersetzung hinzufügen</button>
                             <button type="button" class="btn btn-default collapse-button" data-collapse-class="comment">Kommentar hinzufügen</button>
                         </div>
@@ -55,7 +55,7 @@ module.exports = class IniSection extends IniElement {
                             <input class="form-control input-key" placeholder="Schlüssel" />
                         </div>
                         <div class="col-sm-7">
-                            <textarea class="form-control input-value" placeholder="Wert"></textarea>
+                            <textarea class="form-control input-value" rows="1" placeholder="Wert"></textarea>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="form-control btn btn-default value-add">Hinzufügen</button>
@@ -63,7 +63,7 @@ module.exports = class IniSection extends IniElement {
                     </div>
                     <div class="row collapse comment add-form">
                         <div class="col-sm-10">
-                            <textarea class="form-control input-comment" placeholder="Kommentar"></textarea>
+                            <textarea class="form-control input-comment" rows="1" placeholder="Kommentar"></textarea>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="form-control btn btn-default value-add">Hinzufügen</button>

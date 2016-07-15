@@ -16,3 +16,11 @@ li .name {
 .flex-col {
     display: flex;
 }
+
+.add-button-div {
+    margin-bottom: 0;
+}
+
+.add-button-group {
+    margin: 5px 0;
+}
