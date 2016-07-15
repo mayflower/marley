@@ -28,7 +28,7 @@ module.exports =  class IniValue extends IniElement {
 
     render() {
         let $element = $(`
-        <li><div class="row">
+        <li class="ini-value"><div class="row">
             <div class="col-sm-1"><i class="fa fa-arrows" aria-hidden="true"></i></div>
             <div class="name col-sm-2">${this.name}</div>
             <div class="col-sm-9 flex-col">

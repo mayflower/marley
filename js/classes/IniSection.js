@@ -31,7 +31,7 @@ module.exports = class IniSection extends IniElement {
      */
     render() {
         let $ret = $(`
-        <li class="panel panel-default">
+        <li class="panel panel-default ini-section">
             <div class="panel-heading">
                    <div class="col-sm-1">                
                            <i class="fa fa-arrows" aria-hidden="true"></i>

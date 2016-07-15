@@ -52,6 +52,14 @@ module.exports = class IniElement {
     }
 
     /**
+     * @param {jQuery} $item
+     * @return {IniElement}
+     */
+    static getElement($item) {
+        return $item.data(IniElement.cssClass);
+    }
+
+    /**
      * @returns {jQuery}
      */
     render() {
