@@ -23,7 +23,8 @@ module.exports =  class IniValue extends IniElement {
     render() {
         let $element = $(`
         <li><div class="row">
-            <div class="name col-sm-3">${this.name}</div>
+            <div class="col-sm-1"><i class="fa fa-arrows" aria-hidden="true"></i></div>
+            <div class="name col-sm-2">${this.name}</div>
             <div class="col-sm-9 flex-col">
                 <textarea class="form-control value" rows="1">${this.value}</textarea>
                 <button type="button" class="btn btn-default remove-value"><i class="glyphicon glyphicon-minus"></i></button>
