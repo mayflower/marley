@@ -3,8 +3,8 @@ const IniSection = require('./classes/IniSection');
 const IniComment = require('./classes/IniComment');
 const IniValue = require('./classes/IniValue');
 
-const OPTION_COMMENT="0";
-const OPTION_VALUE="1";
+const OPTION_COMMENT = "0";
+const OPTION_VALUE = "1";
 
 $(document).on('click', '.value-add', function () {
     let $addForm = $(this).parents('.add-value').first();
@@ -13,12 +13,12 @@ $(document).on('click', '.value-add', function () {
     let value = $addForm.find('.value-text').first().val();
 
     let iniElement;
-    switch(selectOpt){
+    switch (selectOpt) {
         case OPTION_COMMENT:
             iniElement = new IniComment(`;${value}`);
             break;
         case OPTION_VALUE:
-            iniElement = new IniValue(`${value}=`);
+            iniElement = addNewValue(value);
             break;
         default:
             throw "unknown dropdown value";
@@ -26,3 +26,21 @@ $(document).on('click', '.value-add', function () {
 
     IniSection.findClosestSection($addForm).addChild(iniElement);
 });
+
+/**
+ * check if input value matches regex
+ *
+ * @param {string} value
+ * @returns {IniValue|null}
+ */
+function addNewValue(value) {
+    let regEx = /^[A-Z_]+$/;
+    console.log(value.match(regEx));
+    if (value.match(regEx)) {
+        return new IniValue(`${value}=`);
+    } else {
+        alert("Platzhalter entspricht nicht der Form /^[A-Z_]+$/");
+    }
+
+    return null;
+}
