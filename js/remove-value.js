@@ -25,7 +25,7 @@ function getConfirmationMessage($value) {
     } else if (element instanceof IniValue) {
         name = `den Platzhalter "${element.name.trim()}"`;
     } else if (element instanceof IniComment) {
-        name = `den Kommentar "${element.name.trim()}"`;
+        name = `den Kommentar "${element.comment.trim()}"`;
     }
 
     return `Wollen Sie ${name} wirklich löschen?`;
