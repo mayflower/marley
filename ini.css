@@ -13,6 +13,6 @@ li .name {
 }
 
 .panel-heading,
-.value-col {
+.flex-col {
     display: flex;
 }
