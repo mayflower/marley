@@ -9,7 +9,7 @@ const OPTION_VALUE = "1";
 $(document).on('click', '.collapse-button', function () {
     let $this = $(this);
     let $collapseParents = $this.closest('.collapse-parent');
-    $collapseParents.find('.collapse.'+$this.data('collapseClass')).collapse('toggle').siblings('.collapse').collapse('hide');
+    $collapseParents.find('.collapse.' + $this.data('collapseClass')).collapse('toggle').siblings('.collapse').collapse('hide');
 });
 
 $(document).on('click', '.value-add', function () {
@@ -17,14 +17,19 @@ $(document).on('click', '.value-add', function () {
 
     let iniElement;
 
-    if ($addForm.hasClass('comment')){
+    if ($addForm.hasClass('comment')) {
         let comment = $addForm.find('.input-comment').val();
         iniElement = new IniComment(comment);
-    } else if ($addForm.hasClass('value')){
+    } else if ($addForm.hasClass('value')) {
         let key = $addForm.find('.input-key').val();
         let value = $addForm.find('.input-value').val();
-        iniElement = new IniValue(key, value);
+
+        if (!key.match(/^([A-Z]+_)*[A-Z]+$/)) {
+            alert('Bitte einen Schlüssel eingeben, der nur aus Großbuchstaben und Unterstrichen besteht.');
+        } else {
+            iniElement = new IniValue(key, value);
+        }
     }
-    
+
     IniSection.findClosestSection($addForm).addChild(iniElement);
 });
