@@ -12,6 +12,10 @@ li .name {
     word-break: break-all;
 }
 
+textarea {
+    resize: vertical;
+}
+
 .panel-heading,
 .flex-col {
     display: flex;
