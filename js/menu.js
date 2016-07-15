@@ -41,7 +41,7 @@ exports.mainMenu = [
             },
             {
                 label: 'Show in Console',
-                accelerator: 'CmdOrCtrl+S',
+                accelerator: 'CmdOrCtrl+Space',
                 click: () => {
                     electron.BrowserWindow.getAllWindows()[0].webContents.openDevTools();
                     electron.BrowserWindow.getAllWindows()[0].webContents.send('saveConsole');
