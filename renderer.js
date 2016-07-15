@@ -34,14 +34,14 @@ function readFile(fileName) {
                 lastSection = element;
                 sections.push(element);
             } else if (element instanceof IniElement) {
-                lastSection.children.push(element);
+                lastSection.addChild(element);
             }
         });
         let $sections = $("#sortable-sections");
         $sections.empty();
         sections.forEach(
             section => {
-                let $section = $(section.render());
+                let $section = $(section.$element);
                 $sections.append($section);
                 $section.addClass(IniSection.cssClass).data('section', section);
             }

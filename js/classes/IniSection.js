@@ -3,16 +3,25 @@ const $ = require('jquery');
 
 /**
  * @class
- * @property {IniElement[]} children
  */
 module.exports = class IniSection extends IniElement {
     constructor(line) {
         super(line);
-        this.children = [];
     }
 
     static get cssClass(){
         return 'section-element';
+    }
+
+    addChild(child){
+        this.$element.find('.children').append(child.$element);
+    }
+
+    /**
+     * @return {IniElement[]}
+     */
+    get children(){
+        return IniElement.findElements(this.$element.find('.children'));
     }
 
     /**
@@ -26,7 +35,7 @@ module.exports = class IniSection extends IniElement {
                 <textarea class="form-control name" rows="1">${this.name}</textarea>
             </div>
             <div class="panel-body">
-                <ul class="sortable-values">
+                <ul class="sortable-values children">
                 </ul>
                 <div class="form-group add-value">
                     <div class="row">
@@ -52,11 +61,6 @@ module.exports = class IniSection extends IniElement {
             this.name = $name.val();
         });
 
-        let $appendTo = $ret.find('.sortable-values');
-        this.children.forEach(child => {
-            let $element = child.render();
-            $element.appendTo($appendTo);
-        });
         return $ret;
     }
 
