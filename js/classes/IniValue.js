@@ -17,11 +17,6 @@ module.exports =  class IniValue extends IniElement {
         this.value = value;
     }
 
-    static parse(line){
-        let matches = line.match(this.regex);
-        return new IniValue(matches[1], matches[2]);
-    }
-
     toIni() {
         return `${this.name}="${this.escape(this.value)}"`;
     }

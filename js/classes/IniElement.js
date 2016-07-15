@@ -10,9 +10,10 @@ module.exports = class IniElement {
 
     static parse(line){
         let matches = line.match(this.regex);
+        matches.shift();
         let implementingClass = this;
 
-        return new implementingClass(matches[1]);
+        return new implementingClass(...matches);
     }
 
     get $element() {
