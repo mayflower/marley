@@ -5,13 +5,13 @@ const IniValue = require('./IniValue');
 module.exports = class {
     static getElement(line) {
         if (line.match(IniSection.regex)) {
-            return new IniSection(line);
+            return IniSection.parse(line);
         }
         if (line.match(IniComment.regex)) {
-            return new IniComment(line);
+            return IniComment.parse(line);
         }
         if (line.match(IniValue.regex)) {
-            return new IniValue(line);
+            return IniValue.parse(line);
         }
     }
 };

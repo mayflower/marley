@@ -3,24 +3,26 @@ const $ = require('jquery');
 
 /**
  * @class
+ * @property {string} name
  */
 module.exports = class IniSection extends IniElement {
-    constructor(line) {
-        super(line);
+    constructor(name) {
+        super();
+        this.name = name;
     }
 
-    static get cssClass(){
+    static get cssClass() {
         return 'section-element';
     }
 
-    addChild(child){
+    addChild(child) {
         this.$element.find('.children').append(child.$element);
     }
 
     /**
      * @return {IniElement[]}
      */
-    get children(){
+    get children() {
         return IniElement.findElements(this.$element.find('.children'));
     }
 
@@ -41,17 +43,30 @@ module.exports = class IniSection extends IniElement {
             <div class="panel-body">
                 <ul class="sortable-values children">
                 </ul>
-                <div class="form-group add-value">
+                <div class="form-group collapse-parent">
                     <div class="row">
-                        <div class="col-sm-2">
-                            <select class="form-control value-select">
-                                <option value="1" selected>Übersetzung</option>
-                                <option value="0">Kommentar</option>
-                            </select>
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-default collapse-button" data-collapse-class="value">Übersetzung hinzufügen</button>
+                            <button type="button" class="btn btn-default collapse-button" data-collapse-class="comment">Kommentar hinzufügen</button>
                         </div>
-                        <div class="col-sm-10 flex-col">
-                            <textarea class="form-control value-text" rows="1" placeholder="Platzhalter oder Kommentar-Text"></textarea>
-                            <button type="button" class="btn btn-default value-add">Hinzufügen</button>
+                    </div>
+                    <div class="row collapse value add-form">
+                        <div class="col-sm-3">
+                            <input class="form-control input-key" placeholder="Schlüssel" />
+                        </div>
+                        <div class="col-sm-7">
+                            <textarea class="form-control input-value" placeholder="Wert"></textarea>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="form-control btn btn-default value-add">Hinzufügen</button>
+                        </div>
+                    </div>
+                    <div class="row collapse comment add-form">
+                        <div class="col-sm-10">
+                            <textarea class="form-control input-comment" placeholder="Kommentar"></textarea>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="form-control btn btn-default value-add">Hinzufügen</button>
                         </div>
                     </div>
                 </div>
@@ -79,7 +94,7 @@ module.exports = class IniSection extends IniElement {
      * @param  {jQuery} $items
      * @return {IniSection[]}
      */
-    static findSections($items){
+    static findSections($items) {
         return $items.find('.' + IniSection.cssClass).toArray().map((section) => $(section).data('section'));
     }
 
@@ -88,7 +103,7 @@ module.exports = class IniSection extends IniElement {
      * @param {jQuery} $item
      * @return {IniSection}
      */
-    static findClosestSection($item){
+    static findClosestSection($item) {
         return $item.closest('.' + IniSection.cssClass).data('section');
     }
 };

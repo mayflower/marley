@@ -25,7 +25,7 @@ function readFile(fileName) {
         let sections = [];
         let lines = data.split("\n");
 
-        let lastSection = new IniSection('[]');
+        let lastSection = new IniSection('');
         sections.push(lastSection);
 
         lines.forEach(function (line) {

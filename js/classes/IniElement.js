@@ -2,13 +2,17 @@ const $ = require('jquery');
 
 /**
  * @class
- * @property {string} name
  * @property {jQuery} _$element
  */
 module.exports = class IniElement {
-    constructor(line) {
-        let matches = line.match(this.constructor.regex);
-        this.name = matches[1];
+    constructor() {
+    }
+
+    static parse(line){
+        let matches = line.match(this.regex);
+        let implementingClass = this;
+
+        return new implementingClass(matches[1]);
     }
 
     get $element() {

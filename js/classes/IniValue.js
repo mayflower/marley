@@ -3,6 +3,7 @@ const $ = require('jquery');
 
 /**
  * @class
+ * @property {string} name
  * @property {string} value
  */
 module.exports =  class IniValue extends IniElement {
@@ -10,10 +11,15 @@ module.exports =  class IniValue extends IniElement {
         return /^\s*(.*?)="?(.*?)"?\s*$/;
     }
 
-    constructor(line) {
-        super(line);
-        let matches = line.match(this.constructor.regex);
-        this.value = this.unescape(matches[2]);
+    constructor(name, value) {
+        super();
+        this.name = name;
+        this.value = value;
+    }
+
+    static parse(line){
+        let matches = line.match(this.regex);
+        return new IniValue(matches[1], matches[2]);
     }
 
     toIni() {
