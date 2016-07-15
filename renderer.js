@@ -52,19 +52,34 @@ function readFile(fileName) {
     });
 }
 
-function saveFile(fileName) {
+function saveFile(target) {
+    console.log('saveFile', arguments);
+
     /** @var {IniSection[]} */
     let sections = IniSection.findSections($(document));
 
     let fileContents = sections.map((section) => section.toIni()).join("\n");
     fileContents = fileContents.replace(/^\[]\n/, ""); // remove empty section header [] at the start of the file
 
-    console.log(fileContents);
+    if (typeof target == "string") {
+        fs.writeFile(target, fileContents, (err) => {
+            if (err) {
+                console.log(err);
+                alert("Speichern ist fehlgeschlagen:\n" + err);
+            } else {
+                alert("erfolgreich gespeichert als " + target);
+            }
+        });
+    } else if (target instanceof Function) {
+        target(fileContents);
+    } else {
+        console.log(fileContents);
+    }
 }
 
 electron.ipcRenderer.on('openFile', (sender, fileName) => readFile(fileName));
-
 electron.ipcRenderer.on('saveFile', (sender, fileName) => saveFile(fileName));
+electron.ipcRenderer.on('saveConsole', (sender, fileName) => saveFile());
 
 
 const initialFile = "./test.ini";

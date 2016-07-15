@@ -22,13 +22,29 @@ exports.mainMenu = [
                 }
             },
             {
-                label: 'Speichern',
+                label: 'Speichern unter',
                 accelerator: 'CmdOrCtrl+S',
                 click: () => {
-                    electron.BrowserWindow.getAllWindows()[0].webContents.send(
-                        'saveFile',
-                        "test.ini"
+                    electron.dialog.showSaveDialog(
+                        {title:"speichern unter"},
+                        function (fileName) {
+                            if (!fileName) {
+                                return;
+                            }
+                            electron.BrowserWindow.getAllWindows()[0].webContents.send(
+                                'saveFile',
+                                fileName
+                            );
+                        }
                     );
+                }
+            },
+            {
+                label: 'Show in Console',
+                accelerator: 'CmdOrCtrl+S',
+                click: () => {
+                    electron.BrowserWindow.getAllWindows()[0].webContents.openDevTools();
+                    electron.BrowserWindow.getAllWindows()[0].webContents.send('saveConsole');
                 }
             }
         ]
