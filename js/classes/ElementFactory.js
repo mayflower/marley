@@ -1,6 +1,6 @@
-let IniSection = require('./IniSection');
-let IniComment = require('./IniComment');
-let IniValue = require('./IniValue');
+const IniSection = require('./IniSection');
+const IniComment = require('./IniComment');
+const IniValue = require('./IniValue');
 
 module.exports = class {
     static getElement(line) {

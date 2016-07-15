@@ -54,7 +54,7 @@ function readFile(fileName) {
 
 function saveFile(fileName) {
     /** @var {IniSection[]} */
-    let sections = $('.' + IniSection.cssClass).toArray().map((section) => $(section).data('section'));
+    let sections = IniSection.findSections($(document));
 
     let fileContents = sections.map((section) => section.toIni()).join("\n");
     fileContents = fileContents.replace(/^\[]\n/, ""); // remove empty section header [] at the start of the file

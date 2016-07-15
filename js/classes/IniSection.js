@@ -71,4 +71,22 @@ module.exports = class IniSection extends IniElement {
     static get regex() {
         return /^\s*\[(.*)\]\s*$/;
     }
-}
+
+    /**
+     *
+     * @param  {jQuery} $items
+     * @return {IniSection[]}
+     */
+    static findSections($items){
+        return $items.find('.' + IniSection.cssClass).toArray().map((section) => $(section).data('section'));
+    }
+
+    /**
+     *
+     * @param {jQuery} $item
+     * @return {IniSection}
+     */
+    static findClosestSection($item){
+        return $item.closest('.' + IniSection.cssClass).data('section');
+    }
+};
