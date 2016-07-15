@@ -1,10 +1,11 @@
-// listen to events
-let electron = require('electron');
-let fs = require('fs');
+const electron = require('electron');
+const fs = require('fs');
+const $ = require('jquery');
+require('jquery-ui/sortable');
 
-let ElementFactory = require('./js/classes/ElementFactory');
-let IniSection = require('./js/classes/IniSection');
-let IniElement = require('./js/classes/IniElement');
+const ElementFactory = require('./js/classes/ElementFactory');
+const IniSection = require('./js/classes/IniSection');
+const IniElement = require('./js/classes/IniElement');
 
 initializeSortables();
 
@@ -18,7 +19,7 @@ function initializeSortables() {
     });
 }
 
-electron.ipcRenderer.on('openFile', function (sender, fileName) {
+function readFile(fileName) {
     fs.readFile(fileName, 'utf-8', function (err, data) {
         /** @var {IniSection[]} */
         let sections = [];
@@ -45,11 +46,13 @@ electron.ipcRenderer.on('openFile', function (sender, fileName) {
                 $section.addClass(IniSection.cssClass).data('section', section);
             }
         );
+
+        $('#file-name').text(fileName);
         initializeSortables();
     });
-});
+}
 
-electron.ipcRenderer.on('saveFile', function (sender, fileName) {
+function saveFile(fileName) {
     /** @var {IniSection[]} */
     let sections = $('.' + IniSection.cssClass).toArray().map((section) => $(section).data('section'));
 
@@ -57,5 +60,20 @@ electron.ipcRenderer.on('saveFile', function (sender, fileName) {
     fileContents = fileContents.replace(/^\[]\n/, ""); // remove empty section header [] at the start of the file
 
     console.log(fileContents);
+}
+
+electron.ipcRenderer.on('openFile', (sender, fileName) => readFile(fileName));
+
+electron.ipcRenderer.on('saveFile', (sender, fileName) => saveFile(fileName));
+
+
+const initialFile = "./test.ini";
+fs.access(initialFile, fs.R_OK, function (err) {
+    if (!err) {
+        console.log(`file "${initialFile}" exists, loading`);
+        readFile(initialFile);
+    } else {
+        console.log(`there is no file named "${initialFile}" , starting with an empty window`);
+    }
 });
 

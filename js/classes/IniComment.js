@@ -1,4 +1,5 @@
-let IniElement = require('./IniElement');
+const IniElement = require('./IniElement');
+const $ = require('jquery');
 
 module.exports = class IniComment extends IniElement {
     static get regex() {
