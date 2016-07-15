@@ -32,7 +32,7 @@ module.exports = class IniSection extends IniElement {
         <li class="panel panel-default">
             <div class="panel-heading">
                 <button type="button" class="btn btn-default toggle-collapse"><i class="glyphicon glyphicon-chevron-up"></i></button>
-                <textarea class="form-control name" rows="1">${this.name}</textarea>
+                <input class="form-control name" rows="1" value="${this.name}"/>
                 <button type="button" class="btn btn-default remove-value"><i class="glyphicon glyphicon-minus"></i></button>
             </div>
             <div class="panel-body">
