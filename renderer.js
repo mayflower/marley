@@ -83,7 +83,7 @@ class IniSection extends IniElement {
     /**
      * @returns jQuery
      */
-    rend er() {
+    render() {
         let $ret = $(`
         <li class="panel panel-default">
             <div class="panel-heading">
