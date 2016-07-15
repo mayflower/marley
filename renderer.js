@@ -83,10 +83,11 @@ class IniSection extends IniElement {
     /**
      * @returns jQuery
      */
-    render() {
+    rend er() {
         let $ret = $(`
         <li class="panel panel-default">
             <div class="panel-heading">
+                <button type="button" class="btn btn-default toggle-collapse"><i class="glyphicon glyphicon-chevron-up"></i></button>
                 <textarea class="form-control" rows="1">${this.name}</textarea>
             </div>
             <div class="panel-body">

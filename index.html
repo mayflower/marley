@@ -6,6 +6,9 @@
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <style>
+        .panel-heading {
+            display: flex;
+        }
         ul {
             list-style: none;
             padding-left: 0;
@@ -83,6 +86,7 @@
     let $ = jQuery;
     require('jquery-ui');
     require('bootstrap');
-    require('./renderer.js')
+    require('./renderer.js');
+    require('./js/section-collapse.js');
 </script>
 </html>
