@@ -33,9 +33,7 @@ module.exports = class IniSection extends IniElement {
         let $ret = $(`
         <li class="panel panel-default ini-section">
             <div class="panel-heading">
-                   <div class="col-sm-1">                
-                           <i class="fa fa-arrows" aria-hidden="true"></i>
-                    </div>
+                <div class="col-sm-1 pointer"><i class="fa fa-arrows" aria-hidden="true"></i></div>
                 <button type="button" class="btn btn-default toggle-collapse"><i class="glyphicon glyphicon-chevron-up"></i></button>
                 <input class="form-control name" rows="1" value="${this.name}"/>
                 <button type="button" class="btn btn-default remove-value"><i class="glyphicon glyphicon-minus"></i></button>

@@ -24,3 +24,7 @@ textarea {
 .add-button-group {
     margin: 5px 0;
 }
+
+.pointer {
+    cursor: pointer;
+}
