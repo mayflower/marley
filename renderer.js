@@ -76,7 +76,7 @@ electron.ipcRenderer.on('saveFile', (sender, fileName) => saveFile(fileName));
 electron.ipcRenderer.on('saveConsole', (sender, fileName) => saveFile());
 
 
-const initialFile = "./test.ini";
+const initialFile = "./example.ini";
 fs.access(initialFile, fs.R_OK, function (err) {
     if (!err) {
         console.log(`file "${initialFile}" exists, loading`);

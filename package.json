@@ -1,28 +1,50 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "MarLeY",
+  "version": "0.1.0",
+  "description": "a modern ini editor",
+  "author": {
+    "name": "Mayflower",
+    "mail": "oss-marley@mayflower.de"
+  },
+  "contributors": [
+    {
+      "name": "Lenz Weber (Mayflower)",
+      "url": "http://github.com/phryneas"
+    },
+    {
+      "name": "Maria Haubner (Mayflower)",
+      "url": "https://github.com/mariahaubner"
+    },
+    {
+      "name": "Martin Runge (Mayflower)",
+      "url": "https://github.com/dermeck"
+    }
+  ],
+  "homepage": "https://github.com/mayflower/marley",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "install-app-deps",
+    "pack": "build --dir",
+    "dist": "build"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/electron/electron-quick-start.git"
+      "type": "git",
+      "url": "git+https://github.com/mayflower/marley.git"
   },
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial"
+    "ini",
+    "ini-editor",
+    "utf-8",
+    "joomla",
+    "translation"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/electron/electron-quick-start/issues"
+    "url": "https://github.com/mayflower/marley/issues"
   },
-  "homepage": "https://github.com/electron/electron-quick-start#readme",
   "devDependencies": {
+    "electron-builder": "^5.14.2",
     "electron-prebuilt": "^1.2.0"
   },
   "dependencies": {
@@ -30,5 +52,12 @@
     "font-awesome": "^4.6.3",
     "jquery": "^3.0.0",
     "jquery-ui": "^1.10.5"
+  },
+  "build": {
+    "appId": "ini-editor.mayflower.app",
+    "app-category-type": "editor",
+    "win": {
+      "iconUrl": "http://electron.atom.io/images/apps/atom.png"
+    }
   }
 }
