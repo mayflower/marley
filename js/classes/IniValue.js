@@ -44,4 +44,9 @@ module.exports =  class IniValue extends IniElement {
 
         return $element;
     }
+
+    getContent() {
+        let result = this.name + " " + this.value;
+        return result;
+    }
 };

@@ -25,29 +25,15 @@ function filterFile() {
     let searchQuery = $('.search-query').val();
     searchQuery = searchQuery.toLowerCase();
 
-    let searchContent = "";
     let entries = $('li.has-ini-element');
     entries.each(function () {
-        searchContent = "";
-
         let $that = $(this);
-        let element = IniElement.getElement($(this));
+        let element = IniElement.getElement($that);
 
-        if (element instanceof IniValue) {
-            searchContent = `${element.name} ${element.value}`;
-        } else if (element instanceof IniComment) {
-            searchContent = element.comment;
-        } else if (element instanceof IniSection) {
-            // TODO hide empty sections
-            return;
-        }
-
-        searchContent = searchContent.toLowerCase();
-
-        if (searchContent.indexOf(searchQuery) === -1) {
-            $that.hide();
-        } else {
+        if(element.search(searchQuery)) {
             $that.show();
+        } else {
+            $that.hide();
         }
     });
 }
