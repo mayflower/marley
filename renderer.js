@@ -6,8 +6,11 @@ require('jquery-ui/sortable');
 const ElementFactory = require('./js/classes/ElementFactory');
 const IniSection = require('./js/classes/IniSection');
 const IniElement = require('./js/classes/IniElement');
+const Search = require('./js/classes/Search');
 
 initializeSortables();
+
+Search.init();
 
 function initializeSortables() {
     $("#sortable-sections").sortable({
