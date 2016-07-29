@@ -57,7 +57,7 @@
     "appId": "ini-editor.mayflower.app",
     "app-category-type": "editor",
     "win": {
-      "iconUrl": "http://electron.atom.io/images/apps/atom.png"
+      "iconUrl": "https://github.com/mayflower/marley/raw/master/build/icon.png"
     }
   }
 }
