@@ -115,6 +115,11 @@ module.exports = class IniSection extends IniElement {
     }
 
     search(queryString) {
+
+        if(queryString == "") {
+            return true;
+        }
+
         let children = this.children;
 
         for (let child of children) {
