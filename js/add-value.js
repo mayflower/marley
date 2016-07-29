@@ -33,7 +33,7 @@ $(document).on('click', '.value-add', function () {
         let section = $addForm.find('.input-section').val();
         iniElement = new IniSection(section);
 
-        $('#sortable-sections').append(iniElement.render());
+        $('#sortable-sections').append(iniElement.$element);
         return;
     }
 

@@ -10,10 +10,6 @@ const IniElement = require('./js/classes/IniElement');
 initializeSortables();
 
 function initializeSortables() {
-
-    $(".sortable-values").sortable({
-        connectWith: '.sortable-values'
-    });
     $("#sortable-sections").sortable({
         handle: '.panel-heading'
     });
@@ -41,9 +37,7 @@ function readFile(fileName) {
         $sections.empty();
         sections.forEach(
             section => {
-                let $section = $(section.$element);
-                $sections.append($section);
-                $section.addClass(IniSection.cssClass).data('section', section);
+                $sections.append(section.$element);
             }
         );
 

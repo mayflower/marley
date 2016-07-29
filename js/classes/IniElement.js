@@ -20,6 +20,7 @@ module.exports = class IniElement {
         if (!this._$element) {
             this._$element = this.render();
             this._$element.addClass(IniElement.cssClass).data(IniElement.cssClass, this);
+            this._$element.addClass(this.constructor.cssClass).data(this.constructor.cssClass, this);
         }
         return this._$element;
     }

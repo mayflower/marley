@@ -1,5 +1,6 @@
 const IniElement = require('./IniElement');
 const $ = require('jquery');
+require('jquery-ui/sortable');
 
 /**
  * @class
@@ -93,7 +94,7 @@ module.exports = class IniSection extends IniElement {
      * @return {IniSection[]}
      */
     static findSections($items) {
-        return $items.find('.' + IniSection.cssClass).toArray().map((section) => $(section).data('section'));
+        return $items.find('.' + IniSection.cssClass).toArray().map((section) => $(section).data(IniSection.cssClass));
     }
 
     /**
@@ -102,10 +103,14 @@ module.exports = class IniSection extends IniElement {
      * @return {IniSection}
      */
     static findClosestSection($item) {
-        return $item.closest('.' + IniSection.cssClass).data('section');
+        return $item.closest('.' + IniSection.cssClass).data(IniSection.cssClass);
     }
 
-    static findClosestSectionFoo($item) {
-        return $item.closest('.' + IniSection.cssClass);
+    get $element(){
+        let $element = super.$element;
+        $element.find(".sortable-values").sortable({
+            connectWith: '.sortable-values'
+        });
+        return $element;
     }
 };
