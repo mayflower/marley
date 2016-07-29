@@ -29,6 +29,12 @@ $(document).on('click', '.value-add', function () {
         } else {
             iniElement = new IniValue(key, value);
         }
+    } else if ($addForm.hasClass('section')) {
+        let section = $addForm.find('.input-section').val();
+        iniElement = new IniSection(section);
+
+        $('#sortable-sections').append(iniElement.render());
+        return;
     }
 
     IniSection.findClosestSection($addForm).addChild(iniElement);

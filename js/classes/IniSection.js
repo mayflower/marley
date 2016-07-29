@@ -104,4 +104,8 @@ module.exports = class IniSection extends IniElement {
     static findClosestSection($item) {
         return $item.closest('.' + IniSection.cssClass).data('section');
     }
+
+    static findClosestSectionFoo($item) {
+        return $item.closest('.' + IniSection.cssClass);
+    }
 };
