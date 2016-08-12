@@ -17,8 +17,12 @@ module.exports = class IniValue extends IniElement {
         this.value = value;
     }
 
-    toIni() {
-        return `${this.name}="${this.constructor.escape(this.value)}"`;
+    /**
+     * @param {Object} allSettings
+     * @return {string}
+     */
+    toIni(allSettings) {
+        return `${this.name}="${this.constructor.escape(this.value, allSettings)}"`;
     }
 
     render() {

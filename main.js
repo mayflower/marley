@@ -1,4 +1,13 @@
 const electron = require('electron');
+const settings = require('electron-settings');
+
+settings.defaults({
+    "loadSave": {
+        "joomla": {
+            "escapeQuotes" : false
+        }
+    }
+});
 
 // Module to control application life.
 const electronApp = electron.app;
@@ -27,8 +36,10 @@ function createWindow() {
         mainWindow = null;
     });
 
-    let mainMenu = require('./js/menu').mainMenu;
-    electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(mainMenu));
+    let loadMenu = require('./js/menu').loadMenu;
+    loadMenu(settings).then((newMainMenu) => {
+        electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(newMainMenu))
+    });
 }
 
 // This method will be called when Electron has finished

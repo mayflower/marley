@@ -80,8 +80,12 @@ module.exports = class IniSection extends IniElement {
         return $ret;
     }
 
-    toIni() {
-        return `[${this.name}]\n` + this.children.map((child) => child.toIni()).join("\n");
+    /**
+     * @param {Object} allSettings
+     * @return {string}
+     */
+    toIni(allSettings) {
+        return `[${this.name}]\n` + this.children.map((child) => child.toIni(allSettings)).join("\n");
     }
 
     static get regex() {
