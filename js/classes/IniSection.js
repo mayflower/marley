@@ -113,4 +113,19 @@ module.exports = class IniSection extends IniElement {
         });
         return $element;
     }
+
+    search(queryString) {
+
+        if(queryString == "") {
+            return true;
+        }
+
+        let children = this.children;
+
+        for (let child of children) {
+            if (child.search(queryString)) {
+                return true;
+            }
+        }
+    }
 };

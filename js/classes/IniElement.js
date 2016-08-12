@@ -75,5 +75,23 @@ module.exports = class IniElement {
         throw "implement me!";
     }
 
+    /**
+     * @returns {string}
+     */
+    getContent() {
+        throw "implement me!";
+    }
 
+    /**
+     * Check if the element contains a certain string. Returns true if it does otherwise false.
+     * @param queryString
+     * @returns {boolean}
+     */
+    search(queryString) {
+        let searchContent = this.getContent();
+
+        searchContent = searchContent.toLowerCase();
+
+        return searchContent.indexOf(queryString) !== -1;
+    }
 };

@@ -37,4 +37,8 @@ module.exports = class IniComment extends IniElement {
 
         return $element;
     }
+
+    getContent() {
+        return this.comment;
+    }
 };
