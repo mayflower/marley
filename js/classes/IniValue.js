@@ -6,7 +6,7 @@ const $ = require('jquery');
  * @property {string} name
  * @property {string} value
  */
-module.exports =  class IniValue extends IniElement {
+module.exports = class IniValue extends IniElement {
     static get regex() {
         return /^\s*(.*?)="?(.*?)"?\s*$/;
     }
@@ -18,7 +18,7 @@ module.exports =  class IniValue extends IniElement {
     }
 
     toIni() {
-        return `${this.name}="${this.escape(this.value)}"`;
+        return `${this.name}="${this.constructor.escape(this.value)}"`;
     }
 
     render() {

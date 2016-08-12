@@ -11,6 +11,7 @@ module.exports = class IniElement {
     static parse(line){
         let matches = line.match(this.regex);
         matches.shift();
+        matches = matches.map(this.unescape);
         let implementingClass = this;
 
         return new implementingClass(...matches);
@@ -29,16 +30,21 @@ module.exports = class IniElement {
      * converts escaped ini-string to normal string for display
      * @param string
      */
-    unescape(string){
-        return string.replace(/"_QQ_"/g, '"').replace(/\\n/g, "\n");
+    static unescape(string){
+        return string
+            .replace(/"(_QQ_")+/g, '"') // replace the joomla-string "_QQ_" with ".
+            //as we had a bug that introduced strings like "_QQ_"_QQ_", those will also be shortened to ".
+            .replace(/\\n/g, "\n"); // \n to real newline
     }
 
     /**
      * converts normal string to escaped string for ini
      * @param string
      */
-    escape(string){
-        return string.replace(/"/g, '"_QQ_"').replace(/\n/g, '\\n');
+    static escape(string){
+        return string
+            .replace(/"/g, '"_QQ_"') // joomla-specific: " to "_QQ_"
+            .replace(/\n/g, '\\n'); // newline to \n
     }
 
     static get cssClass() {
