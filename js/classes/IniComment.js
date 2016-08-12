@@ -15,8 +15,13 @@ module.exports = class IniComment extends IniElement {
         return /^;(.*)/;
     }
 
-    toIni() {
-        return `;${this.constructor.escape(this.comment)}`;
+    /**
+     *
+     * @param allSettings
+     * @return {string}
+     */
+    toIni(allSettings) {
+        return `;${this.constructor.escape(this.comment, allSettings)}`;
     }
 
     render() {

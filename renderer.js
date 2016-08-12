@@ -1,4 +1,5 @@
 const electron = require('electron');
+const settings = require('electron-settings');
 const fs = require('fs');
 const $ = require('jquery');
 require('jquery-ui/sortable');
@@ -19,6 +20,7 @@ function initializeSortables() {
 }
 
 function readFile(fileName) {
+    let allSettings = settings.getSync();
     fs.readFile(fileName, 'utf-8', function (err, data) {
         /** @var {IniSection[]} */
         let sections = [];
@@ -28,7 +30,7 @@ function readFile(fileName) {
         sections.push(lastSection);
 
         lines.forEach(function (line) {
-            let element = ElementFactory.getElement(line);
+            let element = ElementFactory.getElement(line, allSettings);
             if (element instanceof IniSection) {
                 lastSection = element;
                 sections.push(element);
@@ -50,12 +52,12 @@ function readFile(fileName) {
 }
 
 function saveFile(target) {
-    console.log('saveFile', arguments);
+    let allSettings = settings.getSync();
 
     /** @var {IniSection[]} */
     let sections = IniSection.findSections($(document));
 
-    let fileContents = sections.map((section) => section.toIni()).join("\n");
+    let fileContents = sections.map((section) => section.toIni(allSettings)).join("\n");
     fileContents = fileContents.replace(/^\[]\n/, ""); // remove empty section header [] at the start of the file
 
     if (typeof target == "string") {

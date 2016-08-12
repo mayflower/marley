@@ -29,8 +29,8 @@
     "dist": "build"
   },
   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/mayflower/marley.git"
+    "type": "git",
+    "url": "git+https://github.com/mayflower/marley.git"
   },
   "keywords": [
     "ini",
@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "electron-settings": "^2.1.1",
     "font-awesome": "^4.6.3",
     "jquery": "^3.0.0",
     "jquery-ui": "^1.10.5"
