@@ -33,10 +33,8 @@ module.exports = class IniSection extends IniElement {
     render() {
         let $ret = $(`
         <li class="panel panel-default ini-section">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-sm-1 pointer"><i class="fa fa-arrows" aria-hidden="true"></i></div>
-                    <div class="col-sm-11">
+            <div class="panel-heading clearfix">
+                    <div class="pointer"><i class="fa fa-arrows" aria-hidden="true"></i></div>
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default toggle-collapse"><i class="glyphicon glyphicon-chevron-up"></i></button>
@@ -45,8 +43,6 @@ module.exports = class IniSection extends IniElement {
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default remove-value"><i class="glyphicon glyphicon-minus"></i></button>
                             </span>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="panel-body">
