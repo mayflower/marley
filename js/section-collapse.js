@@ -2,7 +2,7 @@ const $ = require('jquery');
 
 $(document).on('click', '.toggle-collapse', function () {
     let $thisButton = $(this);
-    let $panelHeading = $thisButton.parent('.panel-heading');
+    let $panelHeading = $thisButton.closest('.panel-heading');
     let $panelBody = $panelHeading.next('.panel-body');
 
     $panelBody.toggle(function () {

@@ -12,7 +12,6 @@ textarea {
     resize: vertical;
 }
 
-.panel-heading,
 .flex-col {
     display: flex;
 }
@@ -27,4 +26,25 @@ textarea {
 
 .pointer {
     cursor: pointer;
+}
+
+body {
+    padding-top: 70px;
+}
+
+.search-query {
+    width: 40vw !important;
+}
+
+hr {
+    margin: 10px 0 5px 0;
+}
+
+.navbar .input-group .btn {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#file-name {
+    font-weight: 600;
 }
