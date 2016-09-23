@@ -33,20 +33,29 @@ module.exports = class IniSection extends IniElement {
     render() {
         let $ret = $(`
         <li class="panel panel-default ini-section">
-            <div class="panel-heading">
-                <div class="col-sm-1 pointer"><i class="fa fa-arrows" aria-hidden="true"></i></div>
-                <button type="button" class="btn btn-default toggle-collapse"><i class="glyphicon glyphicon-chevron-up"></i></button>
-                <input class="form-control name" rows="1" value="${this.name}"/>
-                <button type="button" class="btn btn-default remove-value"><i class="glyphicon glyphicon-minus"></i></button>
+            <div class="panel-heading clearfix">
+                    <div class="pointer"><i class="fa fa-arrows" aria-hidden="true"></i></div>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default toggle-collapse"><i class="glyphicon glyphicon-chevron-up"></i></button>
+                            </span>
+                            <input class="form-control name" rows="1" value="${this.name}"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default remove-value"><i class="glyphicon glyphicon-minus"></i></button>
+                            </span>
+                </div>
             </div>
             <div class="panel-body">
                 <ul class="sortable-values children">
                 </ul>
-                <div class="form-group collapse-parent well well-sm add-button-div">
+                <hr/>
+                <div class="form-group collapse-parent add-button-div">
                     <div class="row">
                         <div class="col-sm-12 add-button-group">
-                            <button type="button" class="btn btn-default collapse-button" data-collapse-class="value">Übersetzung hinzufügen</button>
-                            <button type="button" class="btn btn-default collapse-button" data-collapse-class="comment">Kommentar hinzufügen</button>
+                            <div class="btn-group btn-group-xs" role="group">
+                                <button type="button" class="btn btn-default btn-xs collapse-button" data-collapse-class="value">Übersetzung hinzufügen</button>
+                                <button type="button" class="btn btn-default btn-xs collapse-button" data-collapse-class="comment">Kommentar hinzufügen</button>
+                            </div>
                         </div>
                     </div>
                     <div class="row collapse value add-form">

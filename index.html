@@ -4,40 +4,49 @@
     <meta charset="UTF-8">
     <title>MarLeY, a modern ini editor</title>
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.yeti.min.css" rel="stylesheet">
     <link href="./node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./ini.css" type="text/css" media="screen">
 </head>
 
 <body>
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" id="file-name">please load a file</a>
+
+        </div>
+        <form class="navbar-form navbar-right">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="search-query form-control" placeholder="Search">
+                    <div class="input-group-btn">
+                        <button class="btn disabled" style="cursor:default;" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>
+
 <div class="container-fluid">
-    <div class="well well-sm">
-        <div class="well well-sm">
-            <h1 id="file-name">please load a file</h1>
+
+    <ul id="sortable-sections">
+
+
+    </ul>
+    <div class="row section add-form">
+        <div class="col-sm-10">
+            <textarea class="form-control input-section" rows="1" placeholder="Sektions-Name"></textarea>
         </div>
-
-        <div class="well well-sm">
-            <div class="input-group">
-            <span class="input-group-btn">
-                    <button class="btn disabled" style="cursor:default;" type="button">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-            </span>
-                <input type="text" class="search-query form-control" placeholder="Search">
-            </div>
-        </div>
-
-        <ul id="sortable-sections">
-
-
-        </ul>
-        <div class="row section add-form">
-            <div class="col-sm-10">
-                <textarea class="form-control input-section" rows="1" placeholder="Sektions-Name"></textarea>
-            </div>
-            <div class="col-sm-2">
-                <button type="button" class="form-control btn btn-default value-add">Hinzufügen</button>
-            </div>
+        <div class="col-sm-2">
+            <button type="button" class="form-control btn btn-default value-add">Hinzufügen</button>
         </div>
     </div>
 </div>
