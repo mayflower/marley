@@ -13,8 +13,8 @@ module.exports = class IniElement {
      * @param {Object} allSettings
      * @return {IniElement}
      */
-    static parse(line, allSettings){
-        let matches = line.match(this.regex);
+    static parse(line, allSettings, regex = this.regex){
+        let matches = line.match(regex);
         matches.shift();
         matches = matches.map((match) => this.unescape(match, allSettings));
         let implementingClass = this;
