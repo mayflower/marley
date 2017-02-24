@@ -4,7 +4,8 @@ const settings = require('electron-settings');
 settings.defaults({
     "loadSave": {
         "joomla": {
-            "escapeQuotes" : false
+            "escapeQuotes" : false,
+            "convertCommentsToSections": false,
         }
     }
 });
