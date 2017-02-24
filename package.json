@@ -1,6 +1,6 @@
 {
   "name": "MarLeY",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "a modern ini editor",
   "author": {
     "name": "Mayflower",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "electron-builder": "^5.14.2",
-    "electron-prebuilt": "^1.2.0"
+    "electron": "^1.2.0"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",

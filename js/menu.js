@@ -77,6 +77,14 @@ function getMenuForSettings(settings, allSettings) {
                     click: (menuItem, browserWindow, event) => {
                         settings.set('loadSave.joomla.escapeQuotes', menuItem.checked);
                     }
+                },
+                {
+                    label: 'Joomla: Kommentare als Sektionen laden',
+                    type: 'checkbox',
+                    checked: allSettings.loadSave.joomla.convertCommentsToSections,
+                    click: (menuItem, browserWindow, event) => {
+                        settings.set('loadSave.joomla.convertCommentsToSections', menuItem.checked);
+                    }
                 }
             ]
         }
