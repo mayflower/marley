@@ -2,7 +2,7 @@ const electron = require('electron');
 const settings = require('electron-settings');
 const fs = require('fs');
 const $ = require('jquery');
-require('jquery-ui/sortable');
+require('jquery-ui-dist/jquery-ui');
 
 const ElementFactory = require('./js/classes/ElementFactory');
 const IniSection = require('./js/classes/IniSection');

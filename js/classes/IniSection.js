@@ -1,6 +1,6 @@
 const IniElement = require('./IniElement');
 const $ = require('jquery');
-require('jquery-ui/sortable');
+require('jquery-ui-dist/jquery-ui');
 
 /**
  * @class
