@@ -16,3 +16,6 @@ This project was created during our slacktime at Mayflower.
 This is based on electron-quick-start, which is published under CC0.
 
 We are releasing our own code under the MIT License.
+
+# DOWNLOADS #
+current builds for windows are available here: https://ci.appveyor.com/project/phryneas/marley/build/artifacts
