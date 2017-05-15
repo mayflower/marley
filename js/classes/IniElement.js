@@ -58,10 +58,7 @@ module.exports = class IniElement {
     static escape(string, allSettings){
         let ret = string;
 
-        // joomla-specific: " to "_QQ_"
-        if (allSettings.loadSave.joomla.escapeQuotes) {
-            ret = ret.replace(/"/g, '"_QQ_"');
-        }
+        ret = ret.replace(/'/g, '\'"\'"\''); // ' to ''
         ret = ret.replace(/\n/g, '\\n'); // newline to \n
 
         return ret;
